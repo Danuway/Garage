@@ -24,7 +24,6 @@ public class Car extends Vehicle {
 		return noOfWheels;
 	}
 
-	//TODO: private int noOfCabin;
 
 	
 	
