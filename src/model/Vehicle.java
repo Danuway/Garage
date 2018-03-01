@@ -1,5 +1,6 @@
 package model;
 
+import model.utility.Color;
 import model.utility.EngineType;
 import model.utility.EngineType;
 
@@ -7,7 +8,7 @@ public abstract class Vehicle {
 
 	
 	private String registrationNumber;
-	private String color;
+	private Color color;
 	private int numberOfEngins;
 	private EngineType enginType;
 	private int cylinderVolume;
@@ -16,7 +17,7 @@ public abstract class Vehicle {
 	
 	
 	
-	public Vehicle(String registrationNumber, String color, int numberOfEngins, EngineType enginType,
+	public Vehicle(String registrationNumber, Color color, int numberOfEngins, EngineType enginType,
 			int cylinderVolume, String fuelType, int length) {
 		this.registrationNumber = registrationNumber;
 		this.color = color;
@@ -31,7 +32,7 @@ public abstract class Vehicle {
 	public String getRegistrationNumber() {
 		return registrationNumber;
 	}
-	public String getColor() {
+	public Color getColor() {
 		return color;
 	}
 
@@ -51,13 +52,9 @@ public abstract class Vehicle {
 		return length;
 	}
 	
-	public void parking() {
-		System.out.println("Parking....");
-	}
+	public abstract void parking(); 
 	
-	public void unParking() {
-		System.out.println("Unparking....");
-	}
+	public abstract void unParking();
 
 
 	@Override

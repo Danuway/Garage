@@ -1,6 +1,7 @@
 package model;
 
 import model.utility.CarType;
+import model.utility.Color;
 import model.utility.EngineType;
 
 public class Car extends Vehicle {
@@ -8,7 +9,7 @@ public class Car extends Vehicle {
 	private CarType carType;
 	private int noOfWheels;
 	
-	public Car(String registrationNumber, String color, int noOfWheels, int numberOfEngins, EngineType enginType,
+	public Car(String registrationNumber, Color color, int noOfWheels, int numberOfEngins, EngineType enginType,
 			CarType carType, int cylinderVolume, String fuelType, int length) {
 		
 		super(registrationNumber, color, numberOfEngins, enginType, cylinderVolume, fuelType, length);
@@ -22,6 +23,18 @@ public class Car extends Vehicle {
 
 	public int getNoOfWheels() {
 		return noOfWheels;
+	}
+
+	@Override
+	public void parking() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void unParking() {
+		// TODO Auto-generated method stub
+		
 	}
 
 
