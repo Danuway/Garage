@@ -4,15 +4,7 @@ import model.utility.EngineType;
 import model.utility.EngineType;
 
 public abstract class Vehicle {
-/**
- *
-+ parking(void): void
-+ unParking(void): void
-+toString(void):void
 
-
-
- */
 	
 	private String registrationNumber;
 	private String color;
@@ -57,6 +49,25 @@ public abstract class Vehicle {
 	}
 	public int getLength() {
 		return length;
+	}
+	
+	public void parking() {
+		System.out.println("Parking....");
+	}
+	
+	public void unParking() {
+		System.out.println("Unparking....");
+	}
+
+
+	@Override
+	public String toString() {
+		return "Vehicle with registrationNumber: " + registrationNumber 
+				+ ", is of " + color + " color and have"
+				+ numberOfEngins + " number of engins with engin type of " 
+				+ enginType + " that have a cylinder volume of " + cylinderVolume
+				+ ", the fuel type the engin takes is"
+				+ fuelType + ", length=" + length + "]";
 	}
 	
 	
