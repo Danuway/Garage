@@ -2,6 +2,7 @@ package model;
 
 import model.utility.Color;
 import model.utility.EngineType;
+import model.utility.FuelType;
 
 public class Bus extends Vehicle {
 
@@ -9,7 +10,7 @@ public class Bus extends Vehicle {
 	private int noOfWheels;
 	
 	public Bus(String registrationNumber, Color color, int numberOfEngins, EngineType enginType, int cylinderVolume,
-			String fuelType, int length, int noOfDeck, int noOfWheels) {
+			FuelType fuelType, int length, int noOfDeck, int noOfWheels) {
 		super(registrationNumber, color, numberOfEngins, enginType, cylinderVolume, fuelType, length);
 		this.noOfDeck = noOfDeck;
 		this.noOfWheels = noOfWheels;
@@ -23,17 +24,6 @@ public class Bus extends Vehicle {
 		return noOfWheels;
 	}
 
-	@Override
-	public void parking() {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void unParking() {
-		// TODO Auto-generated method stub
-		
-	}
-	
 
 }
