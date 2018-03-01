@@ -1,22 +1,8 @@
 package model.utility;
 
-/*
 
-Hatchback
-Sedan
-Crossover
-Coupe
-Convertible
-
-
-//////////////////////////////////
-
- 
- Regular Two Door
- 
-
- */
 public enum CarType {
 	 
-	MPV,SUV
+	MPV,SUV, HATCHBACK, SEDAN, CROSSOVER, COUPE, CONVERTIBLE, STATION_WAGON, VAN,
+	MINI_VAN, PICKUP_SINGLE_CABIN, PICKUP_DOUBLE_CABIN
 }

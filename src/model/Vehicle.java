@@ -1,21 +1,14 @@
 package model;
 
+import model.utility.Color;
 import model.utility.EngineType;
 import model.utility.EngineType;
 
 public abstract class Vehicle {
-/**
- *
-+ parking(void): void
-+ unParking(void): void
-+toString(void):void
 
-
-
- */
 	
 	private String registrationNumber;
-	private String color;
+	private Color color;
 	private int numberOfEngins;
 	private EngineType enginType;
 	private int cylinderVolume;
@@ -24,7 +17,7 @@ public abstract class Vehicle {
 	
 	
 	
-	public Vehicle(String registrationNumber, String color, int numberOfEngins, EngineType enginType,
+	public Vehicle(String registrationNumber, Color color, int numberOfEngins, EngineType enginType,
 			int cylinderVolume, String fuelType, int length) {
 		this.registrationNumber = registrationNumber;
 		this.color = color;
@@ -39,7 +32,7 @@ public abstract class Vehicle {
 	public String getRegistrationNumber() {
 		return registrationNumber;
 	}
-	public String getColor() {
+	public Color getColor() {
 		return color;
 	}
 
@@ -57,6 +50,21 @@ public abstract class Vehicle {
 	}
 	public int getLength() {
 		return length;
+	}
+	
+	public abstract void parking(); 
+	
+	public abstract void unParking();
+
+
+	@Override
+	public String toString() {
+		return "Vehicle with registrationNumber: " + registrationNumber 
+				+ ", is of " + color + " color and have"
+				+ numberOfEngins + " number of engins with engin type of " 
+				+ enginType + " that have a cylinder volume of " + cylinderVolume
+				+ ", the fuel type the engin takes is"
+				+ fuelType + ", length=" + length + "]";
 	}
 	
 	
