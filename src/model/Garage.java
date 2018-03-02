@@ -56,6 +56,7 @@ public class Garage {
 	 * Removes the vehicle from the garage
 	 * @param vehicle
 	 */
+	
 	public void removeVehicle(Vehicle vehicle) {
 		vehicles.remove(vehicle);
 		noOfVehicles = vehicles.size();

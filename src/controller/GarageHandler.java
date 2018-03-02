@@ -5,6 +5,7 @@ import java.util.HashSet;
 
 import model.Garage;
 import model.GarageIsFullException;
+import model.NoVehicleFoundException;
 import model.Vehicle;
 
 public class GarageHandler {
@@ -12,6 +13,10 @@ public class GarageHandler {
 	
 	public GarageHandler() {
 		garages = new ArrayList<Garage>();
+	}
+	
+	public ArrayList<Garage> getGarages(){
+		return garages;
 	}
 	
 	public ArrayList<Vehicle> getParkedVehicles(){
@@ -69,5 +74,25 @@ public class GarageHandler {
 	public void createGarage(int capacity, String name) {
 		Garage garage = new Garage(name,capacity);
 		garages.add(garage);
+	}
+	
+	/**
+	 * Searches through all parked vehicles to find the vehicle with the registration number equals to regnr
+	 * @param regnr
+	 * @return A vehicle
+	 * @throws NoVehicleFoundException
+	 */
+	public Vehicle getVehicleFromRegNr(String regnr) throws NoVehicleFoundException{
+		ArrayList<Vehicle> foundVehicles = new ArrayList<Vehicle>();
+		
+		for(Vehicle v : getParkedVehicles()) {
+			if(v.getRegistrationNumber().equals(regnr)) {
+				foundVehicles.add(v);
+			}
+		}
+		if(foundVehicles.size() != 1) {
+			throw new NoVehicleFoundException();
+		}
+		return foundVehicles.get(0);
 	}
 }
