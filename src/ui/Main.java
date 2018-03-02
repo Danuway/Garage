@@ -1,17 +1,11 @@
 package ui;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
-
 import controller.GarageHandler;
 import model.Boat;
 import model.Bus;
 import model.Car;
 import model.Garage;
 import model.GarageIsFullException;
-import model.NoVehicleFoundException;
 import model.Vehicle;
 import model.utility.BoatType;
 import model.utility.CarType;

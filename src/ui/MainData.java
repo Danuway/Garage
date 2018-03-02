@@ -6,13 +6,22 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import controller.GarageHandler;
+import model.Airplane;
+import model.Boat;
+import model.Bus;
+import model.Car;
 import model.Garage;
 import model.GarageIsFullException;
+import model.Motercycle;
 import model.NoVehicleFoundException;
 import model.Vehicle;
+import model.utility.BoatType;
+import model.utility.CarType;
 import model.utility.Color;
 import model.utility.EngineType;
 import model.utility.FuelType;
+import model.utility.PlaneTypes;
+import model.utility.VehicleType;
 
 public class MainData {
 	private Garage myGarage;
@@ -73,13 +82,13 @@ public class MainData {
 			for(Vehicle vehicle : garage.getVehicles())
 				System.out.println(vehicle.toString());
 			break;
-			
+
 		case 2:
 			for(Vehicle vehicle : garage.getVehicles())
 				System.out.println(vehicle.toString());
-				//System.out.println(vehicle.getType); TODO: getVehicleType
+			//System.out.println(vehicle.getType); TODO: getVehicleType
 			break;
-			
+
 		case 3:			
 			try {
 				garage.addVehicle(discribeVehicle());
@@ -87,14 +96,14 @@ public class MainData {
 				e.printStackTrace();
 			}
 			break;
-			
+
 		case 4:
 			System.out.println("Enter the prefered capacity: ");
 			int capacity = consoleInput();
 			garage.setMaxCapacity(capacity);
 			System.out.println("Maximum Capacity is set to " + capacity);
 			break;
-			
+
 		case 5:
 			System.out.println("Enter the registration number: ");
 			Scanner sc = new Scanner(System.in);
@@ -107,7 +116,7 @@ public class MainData {
 						+ "The vehicle could not be found.");
 			}
 			break;
-			
+
 		case 6:
 			System.out.println("Please enter the capaciaty: ");
 			int cap = consoleInput();
@@ -123,12 +132,12 @@ public class MainData {
 			FileWriter writer;
 			try {
 				writer = new FileWriter("GarageOutput.txt");
-			
-			for(Vehicle myVehicle: myhandler.getParkedVehicles()){
-				
-				writer.write(myVehicle.toString());
-			}
-			writer.close();
+
+				for(Vehicle myVehicle: myhandler.getParkedVehicles()){
+
+					writer.write(myVehicle.toString());
+				}
+				writer.close();
 			} catch (IOException e) {
 				System.out.println("Something went wrong ...");
 				System.err.println(e);
@@ -138,7 +147,7 @@ public class MainData {
 		default:
 			System.out.println("Are you shure you want to leave? ");
 			System.out.println("1) yes \n"
-								+ "2) no");
+					+ "2) no");
 			choice = consoleInput();
 			if (choice == 1) {
 				System.exit(0);
@@ -159,7 +168,8 @@ public class MainData {
 		return garages.get(counter);
 	}
 	private static Vehicle discribeVehicle() {
-		
+
+		VehicleType myType = selectVehicleType();
 		System.out.println("Enter Registration Number:");
 		String registrationNumber = cin.nextLine();
 		System.out.println("Select the color of the car: ");
@@ -168,13 +178,174 @@ public class MainData {
 		int numberOfEngins = consoleInput();
 		EngineType enginType = selectEngin();
 		int cylinderVolume = selectCilndeVolume();
-		FuelType fuelType2 = selectFuleType();
+		FuelType fuelType = selectFuleType();
 		int length = inputLength();
+		System.out.println("Enter the number of wheels: ");
+		int noOfWheels = consoleInput();
+		switch (myType) {
+		case MOTORCYCLE:
+			boolean hasSideCart = false;
+			System.out.println("Does the motercycle has side cart? enter yes or  no ");
+			Scanner sc = new Scanner(System.in);
+			String condition = sc.nextLine();
+			if (condition == "yes") {
+				hasSideCart = true;
+			}
+			return new Motercycle(registrationNumber, color, noOfWheels, numberOfEngins, enginType, cylinderVolume, fuelType, length, hasSideCart);
+
+		case CAR:
+			System.out.println("Enter the car type: ");
+			CarType carType = carType();
+			return new Car(registrationNumber, color, noOfWheels, numberOfEngins, enginType, carType, cylinderVolume, fuelType, length);
+		case BUS:
+			System.out.println("Enter the number of deck: ");
+			int noOfDeck = consoleInput();
+			return new Bus(registrationNumber, color, numberOfEngins, enginType, cylinderVolume, fuelType, length, noOfDeck, noOfWheels);
+		case BOAT:
+			BoatType boatType = getBoatType();
+			return new Boat(registrationNumber, color, noOfWheels, numberOfEngins, enginType, cylinderVolume, fuelType, length, boatType);
+		default:
+			PlaneTypes planeType = getPlaneType();
+			return new Airplane(registrationNumber, color, noOfWheels, numberOfEngins, enginType, cylinderVolume, fuelType, length, planeType);
+		}
+
+
 		
-		//Vehicle newVehicle = new V
-		//return newVehicle;
-		return null;
 	}
+
+	private static PlaneTypes getPlaneType() {
+		System.out.println("Select Plane type: ");
+		System.out.println("1)" + PlaneTypes.LARGE_CABIN_OR_HEAVY_JETS + "\n" +
+				"2)" + PlaneTypes.LIGHT_JETS + "\n" +
+				"3)" + PlaneTypes.MID_SIZED_JETS + "\n" +
+				"4)" + PlaneTypes.SUPER_MID_SIZE_JETS + "\n" +
+				"5)" + PlaneTypes.TURBO_PROP_PLANES + "\n" );
+		int choise = consoleInput();
+		switch (choise) {
+		case 1:
+
+			return PlaneTypes.LARGE_CABIN_OR_HEAVY_JETS;
+		case 2:
+			return PlaneTypes.LIGHT_JETS;
+		case 3:
+			return PlaneTypes.MID_SIZED_JETS;
+		case 4:
+			return PlaneTypes.SUPER_MID_SIZE_JETS;
+		default:
+			return PlaneTypes.TURBO_PROP_PLANES;
+		}
+	}
+
+	private static BoatType getBoatType() {
+		System.out.println("Select Boat type: ");
+		System.out.println("1)" + BoatType.BASS_BOAT + "\n" +
+				"2)" + BoatType.BAY_BOAT + "\n" +
+				"3)" + BoatType.BOWRIDER + "\n" +
+				"4)" + BoatType.CENTER_CONSOLE + "\n" +
+				"5)" + BoatType.CONVERTABLE_FISHING_BOAT + "\n" +
+				"6)" + BoatType.CRUISER + "\n" +
+				"7)" + BoatType.CUDDY_CABIN + "\n" +
+				"8)" + BoatType.DECK_BOAT + "\n" +
+				"9)" + BoatType.DINGHY + "\n" +
+				"10)" + BoatType.DOWNEAST_CRUISER + "\n" +
+				"11)" + BoatType.DUAL_CONSOLE + "\n" +
+				"12)" + BoatType.EXPRESS_FISHERMAN + "\n");
+		int choise = consoleInput();
+		switch (choise) {
+		case 1:
+
+			return BoatType.BASS_BOAT;
+		case 2:
+			return BoatType.BAY_BOAT;
+		case 3:
+			return BoatType.BOWRIDER;
+		case 4:
+			return BoatType.CENTER_CONSOLE;
+		case 5:
+			return BoatType.CONVERTABLE_FISHING_BOAT;
+		case 6:
+			return BoatType.CRUISER ;
+		case 7:
+			return BoatType.CUDDY_CABIN;
+		case 8:
+			return BoatType.DECK_BOAT;
+		case 9:
+			return BoatType.DINGHY;
+		case 10:
+			return BoatType.DOWNEAST_CRUISER;
+		case 11:
+			return BoatType.DUAL_CONSOLE;
+		default:
+			return BoatType.EXPRESS_FISHERMAN;
+		}
+	}
+
+	private static CarType carType() {
+		System.out.println("Select car type: ");
+		System.out.println("1)" + CarType.CONVERTIBLE + "\n" +
+				"2)" + CarType.COUPE + "\n" +
+				"3)" + CarType.CROSSOVER + "\n" +
+				"4)" + CarType.HATCHBACK + "\n" +
+				"5)" + CarType.MINI_VAN+ "\n" +
+				"6)" + CarType.MPV + "\n" +
+				"7)" + CarType.PICKUP_DOUBLE_CABIN + "\n" +
+				"8)" + CarType.SEDAN + "\n" +
+				"9)" + CarType.STATION_WAGON + "\n" +
+				"10)" + CarType.SUV + "\n" +
+				"11)" + CarType.VAN + "\n");
+		int choise = consoleInput();
+		switch (choise) {
+		case 1:
+
+			return CarType.CONVERTIBLE;
+		case 2:
+			return CarType.COUPE;
+		case 3:
+			return CarType.CROSSOVER;
+		case 4:
+			return CarType.HATCHBACK;
+		case 5:
+			return CarType.MINI_VAN;
+		case 6:
+			return CarType.MPV;
+		case 7:
+			return CarType.PICKUP_DOUBLE_CABIN;
+		case 8:
+			return CarType.SEDAN;
+		case 9:
+			return CarType.STATION_WAGON;
+		case 10:
+			return CarType.SUV;
+		default:
+			return CarType.VAN;
+		}
+	}
+
+	private static VehicleType selectVehicleType() {
+		System.out.println("Select vehicle type: ");
+		System.out.println("1)" + VehicleType.MOTORCYCLE + "\n" +
+				"2)" + VehicleType.CAR + "\n" +
+				"3)" + VehicleType.BUS + "\n" +
+				"4)" + VehicleType.BOAT + "\n" +
+				"5)" + VehicleType.AIRPLANE);
+		int choise = consoleInput();
+		switch (choise) {
+		case 1:
+
+			return VehicleType.MOTORCYCLE;
+		case 2:
+			return VehicleType.CAR;
+		case 3:
+			return VehicleType.BUS;
+		case 4:
+			return VehicleType.BOAT;
+
+		default:
+			return VehicleType.AIRPLANE;
+		}
+
+	}
+
 	private static int inputLength() {
 		System.out.println("Please enter the length of the vehicle: ");
 		return consoleInput();
@@ -228,7 +399,7 @@ public class MainData {
 		System.out.println("10) " + EngineType.V_TWIN);
 		System.out.println("11) " + EngineType.VEE);
 		System.out.println("12) " + EngineType.VR_AND_W);
-		
+
 		int choice = consoleInput();
 		switch (choice) {
 		case 1:
@@ -323,12 +494,12 @@ public class MainData {
 			System.out.println(vehicle.toString());
 		}
 	}
-	
+
 	public static void clearScreen() {
+
 		/*
-		 * ******************************************************************************
-		
-		try
+		 * 
+		 		try
 	    {
 	        final String os = System.getProperty("os.name");
 
@@ -345,7 +516,10 @@ public class MainData {
 	    {
 	        System.out.println("Something went wrong in the 'clear screen method' . ");
 	    }
-	  ************************************************************************************
+		 * ******************************************************************************
+
+		
+		 ************************************************************************************
 		try {
 	        if (System.getProperty("os.name").contains("Windows"))
 	            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
@@ -354,8 +528,8 @@ public class MainData {
 	    } catch (IOException | InterruptedException ex) {
 	    	System.out.println("Something went wrong in the 'clear screen method' . ");
 	    }
-	    *
-	    ************************************************************************************
+		 *
+		 ************************************************************************************
 	    try {
 					new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
 				} catch (InterruptedException e) {
@@ -365,17 +539,17 @@ public class MainData {
 				}
 
 
-	    *
-	    ******************************************************************************
-	    *
+		 *
+		 ******************************************************************************
+		 *
 	    //Linux specific implementation
 		//'H' means move to top of the screen
 		//'2J' means "clear entire screen"
-		 
+
 		System.out.print("\033[H\033[2J");   
-		
-		*
-		******************************************************************************
+
+		 *
+		 ******************************************************************************
 		String[] cls = new String[] {"cmd.exe", "/c", "cls"};
 		try {
 			Runtime.getRuntime().exec(cls);
@@ -383,11 +557,11 @@ public class MainData {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}   
-	    *
-	    ******************************************************************************
-	    */
-		
-		
+		 *
+		 ******************************************************************************
+		 */
+
+
 	}
-	
+
 }
