@@ -171,8 +171,8 @@ public class MainData {
 
 		VehicleType myType = selectVehicleType();
 		System.out.println("Enter Registration Number:");
+		cin.nextLine();
 		String registrationNumber = cin.nextLine();
-		System.out.println("Select the color of the car: ");
 		Color color = selectColor();
 		System.out.println("Enter the number of engin: ");
 		int numberOfEngins = consoleInput();
@@ -324,71 +324,25 @@ public class MainData {
 
 	public static void clearScreen() {
 
-		/*
-		 * 
-		 		try
-	    {
-	        final String os = System.getProperty("os.name");
 
-	        if (os.contains("Windows"))
-	        {
-	            Runtime.getRuntime().exec("cls");
-	        }
-	        else
-	        {
-	            Runtime.getRuntime().exec("clear");
-	        }
-	    }
-	    catch (final Exception e)
-	    {
-	        System.out.println("Something went wrong in the 'clear screen method' . ");
-	    }
-		 * ******************************************************************************
+		try
+		{
+			final String os = System.getProperty("os.name");
 
-
-		 ************************************************************************************
-		try {
-	        if (System.getProperty("os.name").contains("Windows"))
-	            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-	        else
-	            Runtime.getRuntime().exec("clear");
-	    } catch (IOException | InterruptedException ex) {
-	    	System.out.println("Something went wrong in the 'clear screen method' . ");
-	    }
-		 *
-		 ************************************************************************************
-	    try {
-					new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-
-
-		 *
-		 ******************************************************************************
-		 *
-	    //Linux specific implementation
-		//'H' means move to top of the screen
-		//'2J' means "clear entire screen"
-
-		System.out.print("\033[H\033[2J");   
-
-		 *
-		 ******************************************************************************
-		String[] cls = new String[] {"cmd.exe", "/c", "cls"};
-		try {
-			Runtime.getRuntime().exec(cls);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}   
-		 *
-		 ******************************************************************************
-		 */
+			if (os.contains("Windows"))
+			{
+				Runtime.getRuntime().exec("cls");
+			}
+			else
+			{
+				Runtime.getRuntime().exec("clear");
+			}
+		}
+		catch (final Exception e)
+		{
+			System.out.println("Something went wrong in the 'clear screen method' . ");
+		}
 
 
 	}
-
 }
