@@ -210,139 +210,58 @@ public class MainData {
 		}
 
 
-		
+
 	}
 
 	private static PlaneTypes getPlaneType() {
 		System.out.println("Select Plane type: ");
-		System.out.println("1)" + PlaneTypes.LARGE_CABIN_OR_HEAVY_JETS + "\n" +
-				"2)" + PlaneTypes.LIGHT_JETS + "\n" +
-				"3)" + PlaneTypes.MID_SIZED_JETS + "\n" +
-				"4)" + PlaneTypes.SUPER_MID_SIZE_JETS + "\n" +
-				"5)" + PlaneTypes.TURBO_PROP_PLANES + "\n" );
-		int choise = consoleInput();
-		switch (choise) {
-		case 1:
 
-			return PlaneTypes.LARGE_CABIN_OR_HEAVY_JETS;
-		case 2:
-			return PlaneTypes.LIGHT_JETS;
-		case 3:
-			return PlaneTypes.MID_SIZED_JETS;
-		case 4:
-			return PlaneTypes.SUPER_MID_SIZE_JETS;
-		default:
-			return PlaneTypes.TURBO_PROP_PLANES;
+		int choise = 1;
+		for(PlaneTypes plane: PlaneTypes.values()) {
+			System.out.println(choise + ") " + plane);
+			++choise;
 		}
+		choise = consoleInput();
+		return PlaneTypes.values()[--choise];
+
+
 	}
 
 	private static BoatType getBoatType() {
 		System.out.println("Select Boat type: ");
-		System.out.println("1)" + BoatType.BASS_BOAT + "\n" +
-				"2)" + BoatType.BAY_BOAT + "\n" +
-				"3)" + BoatType.BOWRIDER + "\n" +
-				"4)" + BoatType.CENTER_CONSOLE + "\n" +
-				"5)" + BoatType.CONVERTABLE_FISHING_BOAT + "\n" +
-				"6)" + BoatType.CRUISER + "\n" +
-				"7)" + BoatType.CUDDY_CABIN + "\n" +
-				"8)" + BoatType.DECK_BOAT + "\n" +
-				"9)" + BoatType.DINGHY + "\n" +
-				"10)" + BoatType.DOWNEAST_CRUISER + "\n" +
-				"11)" + BoatType.DUAL_CONSOLE + "\n" +
-				"12)" + BoatType.EXPRESS_FISHERMAN + "\n");
-		int choise = consoleInput();
-		switch (choise) {
-		case 1:
-
-			return BoatType.BASS_BOAT;
-		case 2:
-			return BoatType.BAY_BOAT;
-		case 3:
-			return BoatType.BOWRIDER;
-		case 4:
-			return BoatType.CENTER_CONSOLE;
-		case 5:
-			return BoatType.CONVERTABLE_FISHING_BOAT;
-		case 6:
-			return BoatType.CRUISER ;
-		case 7:
-			return BoatType.CUDDY_CABIN;
-		case 8:
-			return BoatType.DECK_BOAT;
-		case 9:
-			return BoatType.DINGHY;
-		case 10:
-			return BoatType.DOWNEAST_CRUISER;
-		case 11:
-			return BoatType.DUAL_CONSOLE;
-		default:
-			return BoatType.EXPRESS_FISHERMAN;
+		int choise = 1;
+		for(BoatType bot: BoatType.values()) {
+			System.out.println(choise + ") " + bot);
+			++choise;
 		}
+		choise = consoleInput();
+		return BoatType.values()[--choise];
+
 	}
 
 	private static CarType carType() {
+		int choise = 1;
 		System.out.println("Select car type: ");
-		System.out.println("1)" + CarType.CONVERTIBLE + "\n" +
-				"2)" + CarType.COUPE + "\n" +
-				"3)" + CarType.CROSSOVER + "\n" +
-				"4)" + CarType.HATCHBACK + "\n" +
-				"5)" + CarType.MINI_VAN+ "\n" +
-				"6)" + CarType.MPV + "\n" +
-				"7)" + CarType.PICKUP_DOUBLE_CABIN + "\n" +
-				"8)" + CarType.SEDAN + "\n" +
-				"9)" + CarType.STATION_WAGON + "\n" +
-				"10)" + CarType.SUV + "\n" +
-				"11)" + CarType.VAN + "\n");
-		int choise = consoleInput();
-		switch (choise) {
-		case 1:
-
-			return CarType.CONVERTIBLE;
-		case 2:
-			return CarType.COUPE;
-		case 3:
-			return CarType.CROSSOVER;
-		case 4:
-			return CarType.HATCHBACK;
-		case 5:
-			return CarType.MINI_VAN;
-		case 6:
-			return CarType.MPV;
-		case 7:
-			return CarType.PICKUP_DOUBLE_CABIN;
-		case 8:
-			return CarType.SEDAN;
-		case 9:
-			return CarType.STATION_WAGON;
-		case 10:
-			return CarType.SUV;
-		default:
-			return CarType.VAN;
+		for(CarType car: CarType.values()) {
+			System.out.println(choise + ") " + car);
+			++choise;
 		}
+		choise = consoleInput();
+		return CarType.values()[--choise];
+
 	}
 
 	private static VehicleType selectVehicleType() {
+
 		System.out.println("Select vehicle type: ");
-		System.out.println("1)" + VehicleType.MOTORCYCLE + "\n" +
-				"2)" + VehicleType.CAR + "\n" +
-				"3)" + VehicleType.BUS + "\n" +
-				"4)" + VehicleType.BOAT + "\n" +
-				"5)" + VehicleType.AIRPLANE);
-		int choise = consoleInput();
-		switch (choise) {
-		case 1:
-
-			return VehicleType.MOTORCYCLE;
-		case 2:
-			return VehicleType.CAR;
-		case 3:
-			return VehicleType.BUS;
-		case 4:
-			return VehicleType.BOAT;
-
-		default:
-			return VehicleType.AIRPLANE;
+		int choise = 0;
+		for(VehicleType vehicles :VehicleType.values() ) {
+			System.out.println((choise + 1) + ") " + vehicles );
+			++choise;
 		}
+		choise = consoleInput();
+		return VehicleType.values()[--choise];
+
 
 	}
 
@@ -351,134 +270,42 @@ public class MainData {
 		return consoleInput();
 	}
 	private static FuelType selectFuleType() {
-		FuelType fuelType = FuelType.PETROLEUM; // Default value.
-		System.out.println("1) " + FuelType.BIO_DIESEL);
-		System.out.println("2) " + FuelType.DIESEL);
-		System.out.println("3) " + FuelType.ETHANOL);
-		System.out.println("4) " + FuelType.GAS);
-		System.out.println("5) " + FuelType.GASOLINE);
-		System.out.println("6) " + FuelType.PETROLEUM);
-		int choice = consoleInput();
-		switch (choice) {
-		case 1:
-			fuelType = FuelType.BIO_DIESEL;
-			break;
-		case 2:
-			fuelType = FuelType.DIESEL;
-			break;
-		case 3:
-			fuelType = FuelType.ETHANOL;
-			break;
-		case 4:
-			fuelType = FuelType.GAS;
-			break;
-		case 5:
-			fuelType = FuelType.GASOLINE;
-			break;
-		case 6:
-			fuelType = FuelType.PETROLEUM;
-			break;
+
+
+		System.out.println("Select Fuel type: ");
+		int choise = 0;
+		for(FuelType fuel : FuelType.values()) {
+			System.out.println((choise + 1) + ") " + fuel);
+			++choise;
 		}
-		return fuelType;
+		choise = consoleInput();
+		return FuelType.values()[--choise];
+
+
 	}
 	private static int selectCilndeVolume() {
 		System.out.println("What is the cilender volume :");
 		return consoleInput();
 	}
 	private static EngineType selectEngin() {
-		EngineType newEnginType = EngineType.BOXER; //Default EngineType.
-		System.out.println("1) " + EngineType.BOXER);
-		System.out.println("2) " + EngineType.EIGHT_CYLINDER);
-		System.out.println("3) " + EngineType.FOUR_CYLINDER);
-		System.out.println("4) " + EngineType.INLINE);
-		System.out.println("5) " + EngineType.SINGLE);
-		System.out.println("6) " + EngineType.SIX_CYLINDER);
-		System.out.println("7) " + EngineType.STRAIGHT);
-		System.out.println("8) " + EngineType.THREE_CYLINDER);
-		System.out.println("9) " + EngineType.TWO_CYLINDER);
-		System.out.println("10) " + EngineType.V_TWIN);
-		System.out.println("11) " + EngineType.VEE);
-		System.out.println("12) " + EngineType.VR_AND_W);
-
-		int choice = consoleInput();
-		switch (choice) {
-		case 1:
-			newEnginType = EngineType.BOXER;
-			break;
-		case 2:
-			newEnginType = EngineType.EIGHT_CYLINDER;
-			break;
-		case 3:
-			newEnginType = EngineType.FOUR_CYLINDER;
-			break;
-		case 4:
-			newEnginType = EngineType.INLINE;
-			break;
-		case 5:
-			newEnginType = EngineType.SINGLE;
-			break;
-		case 6:
-			newEnginType = EngineType.SIX_CYLINDER;
-			break;
-		case 7:
-			newEnginType = EngineType.STRAIGHT;
-			break;
-		case 8:
-			newEnginType = EngineType.THREE_CYLINDER;
-			break;
-		case 9:
-			newEnginType = EngineType.TWO_CYLINDER;
-			break;
-		case 10:
-			newEnginType = EngineType.V_TWIN;
-			break;
-		case 11:
-			newEnginType = EngineType.VEE;
-			break;
-		case 12:
-			newEnginType = EngineType.VR_AND_W;
-			break;
+		int counter = 0;
+		System.out.println("Select Engine Type: ");
+		for(EngineType engin: EngineType.values()) {
+			System.out.println((counter + 1) + ") " + engin);
+			++counter;
 		}
-		return newEnginType;
+		counter = consoleInput();
+		return EngineType.values()[--counter];
 	}
 	private static Color selectColor() {
-		Color newColor = Color.BLACK; //Default color
-		System.out.println("1) " + Color.BLACK);
-		System.out.println("2) " + Color.BLUE);
-		System.out.println("3) " + Color.BROWN);
-		System.out.println("4) " + Color.GREEN);
-		System.out.println("5) " + Color.GREY);
-		System.out.println("6) " + Color.RED);
-		System.out.println("7) " + Color.SILVER);
-		System.out.println("8) " + Color.WHITE);
-		int choice = consoleInput();
-		switch (choice) {
-		case 1:
-			newColor = Color.BLACK;
-			break;
-		case 2:
-			newColor = Color.BLUE;
-			break;
-		case 3:
-			newColor = Color.BROWN;
-			break;
-		case 4:
-			newColor = Color.GREEN;
-			break;
-		case 5:
-			newColor = Color.GREY;
-			break;
-		case 6:
-			newColor = Color.RED;
-			break;
-		case 7:
-			newColor = Color.SILVER;
-			break;
-		case 8:
-			newColor = Color.WHITE;
-			break;
+		int choise = 1;
+		System.out.println("Select the color: ");
+		for(Color color : Color.values()) {
+			System.out.println(choise + ") " + color);
+			++choise;
 		}
-		return newColor;
+		choise = consoleInput();
+		return Color.values()[choise];
 	}
 	private static void displayVehiclesInASpecificGarage(ArrayList<Garage> garages) {
 		int counter = 1;
@@ -518,7 +345,7 @@ public class MainData {
 	    }
 		 * ******************************************************************************
 
-		
+
 		 ************************************************************************************
 		try {
 	        if (System.getProperty("os.name").contains("Windows"))
